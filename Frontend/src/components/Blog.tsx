@@ -12,7 +12,7 @@ export default function Blog({title,description,imageLink,id}:blogtypes){
         const blogId=e.currentTarget.id;
         navigate(`/view/${blogId}`)
     }
-    return <div className="bg-slate-700 w-64 text-white rounded-lg shadow-lg">
+    return <div className="bg-slate-700 text-white rounded-lg shadow-lg w-full">
         <img className=" object-cover rounded-lg h-40 w-full" src={`${imageLink}`} alt="Unloaded Image " />
         <div className="p-2">
         <h5 className="p-2">{title}</h5>

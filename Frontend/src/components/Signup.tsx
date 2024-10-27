@@ -4,7 +4,9 @@ import axios from "axios";
 import { signupParams } from "@niranjan1309/common";
 import {BACKEND_URL} from "../../config.ts"
 import { useNavigate } from "react-router-dom";
+import MordernButton from "./MordernButton.tsx";
 export default function Signup(){
+    const [isLoading,setIsLoading]=useState(false);
   const navigate = useNavigate();
 
     const [state,setState]=useState<signupParams>({
@@ -16,21 +18,24 @@ export default function Signup(){
     // const [email,setemail]=useState("");
     // const [password,setpassword]=useState("");
     async function handleClick(){
+      setIsLoading(true);
       try {
         const res=await axios.post(`${BACKEND_URL}/api/v1/user/signup`,state);
-        localStorage.setItem("token",res.data.token);
+        await localStorage.setItem("token",res.data.token);
+        await localStorage.setItem("username",state.name);
         navigate("/dashboard");
       } catch (error) {
         alert("Invalid inputs!")
         console.log("error while axios post request");
       }
-
+      setIsLoading(false)
     }
 
   return (
-    <div className="flex justify-center h-screen items-center bg-slate-800 ">
-      <div className="flex flex-col items-center justify-center border border-gray-500 rounded-lg p-4 shadow-lg shadow-black bg-slate-750">
-      <div className="text-xl dark:text-white font-bold p-2">Create Your Account</div>
+    <div className="flex justify-center h-screen items-center bg-slate-950 ">
+      <div className="bg-slate-800 flex flex-col items-center justify-center border border-gray-500 rounded-lg shadow-lg shadow-black p-10 w-1/3">
+      <div className="text-3xl dark:text-white font-mono pb-2">Create Your Account</div>
+      <div className=" py-2 w-full">
       <Lablebox onChange={(e:ChangeEvent<HTMLInputElement>):void=>{
         setState({...state,name:e.target.value})
       }} name="Username" placeholdertext="nironman" />
@@ -41,8 +46,9 @@ export default function Signup(){
       <Lablebox onChange={(e:ChangeEvent<HTMLInputElement>):void=>{
         setState({...state,password:e.target.value})
       }} name="Password" placeholdertext="supersecret" type="password"/>
+      </div>
 
-      <button onClick={handleClick} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit!</button>
+      <MordernButton onClick={handleClick} isLoading={isLoading} title={"Sign up"}></MordernButton>
       </div> 
      
     </div>

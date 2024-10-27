@@ -4,29 +4,38 @@ import {signinParams} from "@niranjan1309/common";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
+import MordernButton from "./MordernButton";
 export default function Signin() {
+  const [isLoading,setIsLoading]=useState(false);
+
     const navigate=useNavigate()
     const [state,setState]=useState<signinParams>({
       email:"",
       password:""
     })
     async function handleClick(){
+      setIsLoading(true);
+
       try {
           const res=await axios.post(`${BACKEND_URL}/api/v1/user/signin`,state)
-          console.log("REsposne"+res.data.token)
+          console.log(res.data)
           localStorage.setItem("token",res.data.token)
+          localStorage.setItem("username",res.data.name)
           navigate("/dashboard")
       } catch (error) {
         alert("Invalid inputs!")
         console.log("Error at signing in using axios")
         
       }
+      setIsLoading(false);
+
     }
   return (
-    <div className="flex justify-center h-screen items-center bg-slate-800 ">
-      <div className="flex flex-col items-center justify-center border border-gray-500 rounded-lg p-4 shadow-lg shadow-black">
-      <div className="text-xl dark:text-white font-bold p-3">Log in here</div>
-      <Lablebox onChange={(e)=>{
+    <div className="flex justify-center h-screen items-center bg-slate-950 w-full">
+      <div className="flex flex-col items-center justify-center border border-gray-500 rounded-lg shadow-lg shadow-black bg-slate-900 p-10  w-1/3">
+      <div className="text-3xl dark:text-white font-bold pb-4 font-mono">Log in here</div>
+     <div className=" py-4 w-full">
+     <Lablebox onChange={(e)=>{
         setState({
           ...state,email:e.target.value
         })
@@ -35,8 +44,9 @@ export default function Signin() {
                setState({ ...state,password:e.target.value})
       }
       } name="Password" placeholdertext="supersecret" type="password" />
-      <button onClick={handleClick} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit!</button>
-      </div> 
+     </div>
+     <MordernButton onClick={handleClick} isLoading={isLoading} title={"Sign in"}></MordernButton>
+     </div> 
      
     </div>
   );

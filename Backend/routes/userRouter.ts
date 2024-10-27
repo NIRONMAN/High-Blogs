@@ -113,7 +113,8 @@ userRouter.post('/signin', async (c) => {
       
     return c.json({
       msg:"User Signed in Succesfully",
-      token:token
+      token:token,
+      name:newUser.name
     })
     }
     else{

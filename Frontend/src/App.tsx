@@ -6,11 +6,17 @@ import Signup from "./components/Signup";
 
 import { BrowserRouter, Routes,Route } from "react-router-dom";
 import ViewBlog from "./components/ViewBlog";
+import Appbar from "./components/Appbar";
+import Contact from "./components/Contact";
+import About from "./components/About";
 
 function App() {
   return (
-    <div className="h-screen bg-slate-900">
+    <div className="h-screen bg-slate-950">
+             
+
     <BrowserRouter>
+    <Appbar></Appbar>
     <Routes>
 
       <Route path="/signup" element={<Signup></Signup>}/>
@@ -19,7 +25,9 @@ function App() {
       <Route path="/dashboard" element={<DashBoard></DashBoard>}/>
       <Route path="/create" element={<CreateBlog></CreateBlog>}/>
       <Route path="/view/:blogId" element={<ViewBlog />} />
-
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/about" element={<About />} />
+      
       
     </Routes>
     </BrowserRouter>
