@@ -59,6 +59,7 @@ blogRouter.get('/:id', async (c) => {
   })
 //
 blogRouter.use('/*', async (c, next) => {
+
   const prisma = await new PrismaClient({
           datasourceUrl: c.env.DATABASE_URL,
       }).$extends(withAccelerate());
@@ -86,12 +87,13 @@ blogRouter.use('/*', async (c, next) => {
 
   //Create Blog
   blogRouter.post('/', async (c) => {
+
     const userId = c.get('userId');
     const prisma=await c.get("prisma");
 
   
-    const jsonBody = await c.req.json();
-    const body=jsonBody.state;
+    const body=await c.req.json();
+    
     const post = await prisma.post.create({
       data: {
         title: body.title,
