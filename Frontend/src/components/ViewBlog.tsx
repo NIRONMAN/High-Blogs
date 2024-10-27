@@ -28,7 +28,7 @@ export default function ViewBlog(): ReactNode {
     })()
   }, [blogId]);
   console.log(idVar)
-  return <div className=" text-white  flex flex-col items-center h-full p-10">
+  return <div className=" text-white  flex flex-col items-center h-full bg-slate-950 p-10">
     {
       isLoading ? <h1>Loading...</h1> : <div className=' bg-slate-800 rounded-lg h-full p-5 flex flex-col items-center'>
         <div className=' flex flex-row py-4 w-full h-[50%]'>
