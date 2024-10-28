@@ -31,9 +31,11 @@ export default function Signin() {
 
     }
   return (
-    <div className="flex justify-center h-screen items-center bg-slate-950 w-full">
+    <div className="flex justify-center h-screen items-center bg-slate-950 w-full text-white">
       <div className="flex flex-col items-center justify-center border border-gray-500 rounded-lg shadow-lg shadow-black bg-slate-900 p-10  w-1/3">
       <div className="text-3xl dark:text-white font-bold pb-4 font-mono">Log in here</div>
+      <p>Hey, thanks for bearing with us! We’ve held off on session persistence for now so you can experience our awesome in-house authentication firsthand. 😁
+      </p>
      <div className=" py-4 w-full">
      <Lablebox onChange={(e)=>{
         setState({

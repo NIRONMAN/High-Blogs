@@ -21,7 +21,7 @@ export default function BlogWrapper(){
             setIsLoading(false);
         })();
     },[])
-    return <div className="px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 text-white pt-8">
+    return <div className="px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 text-white py-8">
             <Link to={"/create"}>
             <div className="bg-slate-700  text-white rounded-lg shadow-lg w-full">
             <img className=" object-cover rounded-lg h-50 w-full" src="https://img.freepik.com/free-vector/health-care-plus-symbol-logo-template_474888-3234.jpg?semt=ais_hybrid" alt="Unloaded Image" />
@@ -40,7 +40,10 @@ export default function BlogWrapper(){
             blogsData.map(({id,title,imageLink,content}:SingleBlog):ReactNode=>{
                 try {
                     let part=content.split(" ").slice(0,15).join(" ") || content;
-                    return <Blog id={`${id}`} title={title} description={part+" ..."} imageLink={imageLink}>
+
+                    const parser = new DOMParser();
+                    const doc=parser.parseFromString(part,"text/html");
+                    return <Blog id={`${id}`} title={title} description={doc.body.textContent+" ..."} imageLink={imageLink}>
 
                 </Blog>
                 } catch (error) {

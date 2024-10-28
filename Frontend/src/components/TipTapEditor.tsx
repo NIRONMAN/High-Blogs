@@ -15,7 +15,7 @@ const Tiptap = ({setContent,content}:any) => {
     content,
     editorProps:{
         attributes:{
-            class:"min-h-[200px] rounded-md p-2 border-2"
+            class:"min-h-[320px] rounded-md p-2 border-2"
         }
     },
     onUpdate({editor}){
