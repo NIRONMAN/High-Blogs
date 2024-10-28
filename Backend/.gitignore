@@ -9,3 +9,16 @@ yarn.lock
 pnpm-lock.yaml
 bun.lockb
 .env
+
+
+# Ignore TypeScript build artifacts
+build/
+
+# Ignore generated Prisma files
+prisma/migrations/
+prisma/client/
+
+# Keep the schema
+!prisma/schema.prisma
+
+wrangler.toml
