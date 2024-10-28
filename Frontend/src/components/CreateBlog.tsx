@@ -2,7 +2,7 @@ import { useState } from "react";
 import Lablebox from "./Lablebox";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Tiptap from "./TipTapEditor";
 import MordernButton from "./MordernButton";
 import DOMPurify from 'dompurify';
