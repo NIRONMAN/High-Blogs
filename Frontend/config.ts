@@ -1,1 +1,0 @@
-export const BACKEND_URL="https://backend.hi-niranjan-gd.workers.dev"

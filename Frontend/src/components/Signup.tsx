@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from "react";
 import Lablebox from "./Lablebox";
 import axios from "axios";
 import { signupParams } from "@niranjan1309/common";
-import {BACKEND_URL} from "../../config.ts"
 import { useNavigate } from "react-router-dom";
 import MordernButton from "./MordernButton.tsx";
 export default function Signup(){
@@ -20,7 +19,7 @@ export default function Signup(){
     async function handleClick(){
       setIsLoading(true);
       try {
-        const res=await axios.post(`${BACKEND_URL}/api/v1/user/signup`,state);
+        const res=await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signup`,state);
         await localStorage.setItem("token",res.data.token);
         await localStorage.setItem("username",state.name);
         navigate("/dashboard");

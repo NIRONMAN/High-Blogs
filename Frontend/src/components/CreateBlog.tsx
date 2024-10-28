@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Lablebox from "./Lablebox";
 import axios from "axios";
-import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
 import Tiptap from "./TipTapEditor";
 import MordernButton from "./MordernButton";
@@ -32,7 +31,7 @@ export default function CreateBlog() {
         setIsLoading(true)
         try {
             const clean = DOMPurify.sanitize(content);
-            const res = await axios.post(`${BACKEND_URL}/api/v1/blog`, { ...state, content: clean }, {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog`, { ...state, content: clean }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -56,7 +55,7 @@ If no context is provided, instruct the user to begin writing on the platform on
 `;
 
         try {
-            const res = await axios.post(`${BACKEND_URL}/api/v1/blog/ai`, {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/ai`, {
                 prompt
             }, {
                 headers: {

@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { BACKEND_URL } from '../../config';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 
@@ -18,7 +17,7 @@ export default function ViewBlog(): ReactNode {
   const [idVar, setidVar] = useState<blogContents | null>(null);
   useEffect(() => {
     (async () => {
-      const res = await axios.get(`${BACKEND_URL}/api/v1/blog/${blogId}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${blogId}`);
       const clean = await DOMPurify.sanitize(res.data.content);
 
       setidVar({ ...res.data, content: clean });

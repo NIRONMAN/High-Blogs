@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-export default function Landing() {
 
+export default function Landing() {
     return (
         <div className="bg-slate-950 flex flex-col items-center justify-center h-[calc(100vh-60px)]">
 

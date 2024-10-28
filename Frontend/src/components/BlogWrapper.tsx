@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import Blog from "./Blog";
 import axios from "axios";
-import { BACKEND_URL } from "../../config";
 import { Link } from "react-router-dom";
 type SingleBlog={
     title:string;
@@ -16,7 +15,7 @@ export default function BlogWrapper(){
 
     useEffect(()=>{
         (async ()=>{
-            const res=await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`);
+            const res=await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/bulk`);
             setBlogData(res.data);
             setIsLoading(false);
         })();

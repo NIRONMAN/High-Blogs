@@ -2,10 +2,10 @@ import { useState } from "react";
 import Lablebox from "./Lablebox";
 import {signinParams} from "@niranjan1309/common";
 import axios from "axios";
-import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
 import MordernButton from "./MordernButton";
 export default function Signin() {
+
   const [isLoading,setIsLoading]=useState(false);
 
     const navigate=useNavigate()
@@ -17,7 +17,8 @@ export default function Signin() {
       setIsLoading(true);
 
       try {
-          const res=await axios.post(`${BACKEND_URL}/api/v1/user/signin`,state)
+          
+          const res=await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signin`,state)
           console.log(res.data)
           localStorage.setItem("token",res.data.token)
           localStorage.setItem("username",res.data.name)

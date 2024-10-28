@@ -8,6 +8,7 @@ const blogRouter = new Hono<{
   Bindings: {
     DATABASE_URL: string;
     JWTSECRET: string;
+    API_KEY:string;
   };
   Variables: {
     userId: string;
@@ -139,7 +140,8 @@ blogRouter.put("/", async (c) => {
 blogRouter.post("/ai", async (c) => {
   const body = await c.req.json();
   const res = await fetch(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCSjYX7KG3XnFK0ayRAxsIZciybBXYzReU",
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${c.env?.API_KEY}`
+    ,
     {
       method: "POST",
       body: JSON.stringify({
