@@ -296,7 +296,7 @@ cd ..
 Crafted with ❤️ by **Niranjan Dabhade**
 
 - **GitHub**: [@NIRONMAN](https://github.com/NIRONMAN)
-- **Portfolio**: [niranjandabhade.dev](https://niranjandabhade.dev)
+- **Portfolio**: [nironman.com](https://nironman.com)
 - **LinkedIn**: [Niranjan Dabhade](https://www.linkedin.com/in/niranjan-dabhade-4976a4220/)
 
 ---
